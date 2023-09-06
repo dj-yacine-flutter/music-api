@@ -5,7 +5,7 @@ FROM golang:1.21
 WORKDIR /app
 
 # Install necessary packages for Python virtual environment and cron
-RUN apt-get update && apt-get install -y python3-venv python3-pip cron
+RUN apt-get update && apt-get install -y python3-venv python3-pip cron ffmpeg
 
 # Create a virtual environment for Python
 RUN python3 -m venv /venv
