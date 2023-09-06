@@ -25,6 +25,9 @@ RUN pip install pipx
 # Use pipx to install yt-dlp
 RUN pipx install yt-dlp
 
+# Run pipx ensurepath to update the PATH
+RUN /venv/bin/pipx ensurepath
+
 # Create and configure the script to update yt-dlp
 RUN echo -e '#!/bin/sh\npipx upgrade yt-dlp' > /app/update-ytdlp.sh
 RUN chmod +x /app/update-ytdlp.sh
