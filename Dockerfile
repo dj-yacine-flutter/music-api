@@ -12,8 +12,12 @@ RUN go build -o main .
 
 # Install pipx
 RUN apt-get update && apt-get install -y python3-pip && \
+    python3 -m pip install --user pip && \
+    curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py && \
+    python3 get-pip.py && \
     python3 -m pip install --user pipx && \
     python3 -m pipx ensurepath
+
 
 # Install yt-dlp using pipx
 RUN pipx install yt-dlp
