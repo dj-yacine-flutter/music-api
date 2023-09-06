@@ -14,6 +14,6 @@ func main() {
 	app.Get("/format", api.YouTubeVideoFormats)
 	app.Get("/download", api.YouTubeVideoDownload)
 
-	port := ":8080"
+	port := ":3000"
 	log.Fatal(app.Listen(port))
 }

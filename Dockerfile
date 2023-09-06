@@ -38,12 +38,12 @@ RUN chmod +x /app/update-ytdlp.sh
 # Add a cron job to run your script daily
 RUN (crontab -l ; echo "0 0 * * * /app/update-ytdlp.sh") | crontab -
 
-# Expose port 8080
-EXPOSE 8080
+# Expose port 3000
+EXPOSE 3000
 
 # Sleep for a few seconds to allow PATH update to take effect
 CMD ["/bin/sh", "-c", "sleep 3 && ./main && cron -f"]
 
 
 # docker build -t music-api .
-# docker run -p 8080:8080 --name music-api-container music-api
+# docker run -p 3000:3000 --name music-api-container music-api
