@@ -38,8 +38,8 @@ RUN (crontab -l ; echo "0 0 * * * /app/update-ytdlp.sh") | crontab -
 # Expose port 8080
 EXPOSE 8080
 
-# Run the application and start cron
-CMD ["/bin/sh", "-c", "(./main &) && cron -f"]
+# Sleep for a few seconds to allow PATH update to take effect
+CMD ["/bin/sh", "-c", "sleep 5 && ./main && cron -f"]
 
 
 # docker build -t music-api .
