@@ -28,6 +28,9 @@ RUN pipx install yt-dlp
 # Run pipx ensurepath to update the PATH
 RUN /venv/bin/pipx ensurepath
 
+# Add pipx bin directory to PATH manually
+ENV PATH="/root/.local/bin:$PATH"
+
 # Create and configure the script to update yt-dlp
 RUN echo -e '#!/bin/sh\npipx upgrade yt-dlp' > /app/update-ytdlp.sh
 RUN chmod +x /app/update-ytdlp.sh
@@ -39,7 +42,7 @@ RUN (crontab -l ; echo "0 0 * * * /app/update-ytdlp.sh") | crontab -
 EXPOSE 8080
 
 # Sleep for a few seconds to allow PATH update to take effect
-CMD ["/bin/sh", "-c", "sleep 5 && ./main && cron -f"]
+CMD ["/bin/sh", "-c", "sleep 3 && ./main && cron -f"]
 
 
 # docker build -t music-api .
